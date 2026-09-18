@@ -422,7 +422,7 @@ html, body {
   }
 }
 
-/* Mobile & Tablets: Full vertical art (ricardo_2.png) + action card below */
+/* Mobile & Tablets: Full vertical art (ricardo2.png) + action card below */
 @media (max-width: 960px) {
   /* Disable desktop split background to avoid overlapping */
   .bg-scene {
