@@ -1,0 +1,540 @@
+/* ==========================================================================
+   Ricardo Murad - Grupo WhatsApp Page (Official Split Layout)
+   Design System & Responsiveness
+   ========================================================================== */
+
+:root {
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Brand Colors */
+  --color-brand-blue-deep: #00226c;
+  --color-brand-blue-navy: #00194d;
+  --color-brand-cyan: #0099ff;
+
+  /* WhatsApp Official Colors */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
+  --color-whatsapp-glow: rgba(37, 211, 102, 0.35);
+
+  /* Card Colors */
+  --color-card-bg: #ffffff;
+  --color-card-border: rgba(255, 255, 255, 0.85);
+  --color-card-shadow: 0 24px 60px -12px rgba(0, 16, 48, 0.38),
+                       0 0 1px rgba(0, 0, 0, 0.12);
+
+  /* Typography */
+  --color-text-title: #0f172a;
+  --color-text-body: #334155;
+  --color-text-muted: #64748b;
+
+  --radius-card: 26px;
+  --radius-btn: 16px;
+  --radius-pill: 9999px;
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--color-brand-blue-deep);
+  color: var(--color-text-title);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   Atmosphere & Wallpaper (Ricardo Murad Official Banner)
+   ========================================================================== */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-banner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/.netlify/images?url=/images/ricardo.png&w=2000&q=90');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  /* Crisp, unaltered image */
+  opacity: 1;
+}
+
+/* Cinema-grade gradient mask: solid clean deep royal blue behind card on left, smoothly revealing Ricardo Murad on right */
+.bg-gradient-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #001b57 0%,
+    #001b57 38%,
+    rgba(0, 27, 87, 0.85) 52%,
+    rgba(0, 32, 102, 0.25) 70%,
+    transparent 85%
+  );
+}
+
+/* ==========================================================================
+   Page Layout
+   ========================================================================== */
+.layout-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 36px 32px 36px 72px;
+}
+
+.content-column {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Action Card (WhatsApp Group Gateway)
+   ========================================================================== */
+.action-card {
+  width: 100%;
+  background: var(--color-card-bg);
+  border-radius: var(--radius-card);
+  padding: 32px 28px 24px 28px;
+  box-shadow: var(--color-card-shadow);
+  border: 1px solid var(--color-card-border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card Top: Official Campaign Logo */
+.card-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.campaign-logo {
+  max-width: 195px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.04));
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.25);
+  border-radius: var(--radius-pill);
+  color: #15803d;
+  font-size: 0.785rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-whatsapp);
+  box-shadow: 0 0 6px var(--color-whatsapp);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+.status-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Mobile Candidate Thumb (hidden on desktop where candidate is large on right) */
+.mobile-candidate-preview {
+  display: none;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.candidate-thumb-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.candidate-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.whatsapp-badge-mini {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 26px;
+  height: 26px;
+  background: var(--color-whatsapp);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.whatsapp-badge-mini svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Headline & Text */
+.card-headline {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.main-title {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--color-text-title);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.main-description {
+  font-size: 0.95rem;
+  color: var(--color-text-body);
+  line-height: 1.55;
+}
+
+/* CTA Button & Trust Area */
+.cta-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  width: 100%;
+}
+
+.btn-whatsapp-action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius-btn);
+  box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.42),
+              0 4px 10px rgba(18, 140, 126, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-whatsapp-action::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 80%
+  );
+  transform: rotate(25deg) translateY(-100%);
+  animation: shine-sweep 4.5s ease-in-out infinite;
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: rotate(25deg) translateY(-100%);
+  }
+  30%, 100% {
+    transform: rotate(25deg) translateY(100%);
+  }
+}
+
+.btn-whatsapp-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(37, 211, 102, 0.55),
+              0 6px 14px rgba(18, 140, 126, 0.35);
+  filter: brightness(1.03);
+}
+
+.btn-whatsapp-action:active {
+  transform: translateY(0);
+}
+
+.icon-whatsapp {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Trust Bullets */
+.trust-bullets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.dot-separator {
+  color: var(--color-whatsapp);
+  font-weight: 800;
+}
+
+/* Benefits List */
+.benefits-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  margin-bottom: 20px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--color-text-body);
+  font-weight: 500;
+}
+
+.benefit-icon-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+.benefit-icon-box svg {
+  width: 12px;
+  height: 12px;
+}
+
+.benefit-text {
+  line-height: 1.4;
+}
+
+/* Mobile Hero Banner: hidden by default on desktop */
+.mobile-hero-banner {
+  display: none;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+/* Large screens: ensure generous breathing room */
+@media (min-width: 1400px) {
+  .layout-container {
+    padding-left: 96px;
+  }
+}
+
+/* Laptops and standard desktop */
+@media (max-width: 1200px) {
+  .layout-container {
+    padding: 32px 24px 32px 48px;
+  }
+  .content-column {
+    max-width: 450px;
+  }
+  .main-title {
+    font-size: 1.45rem;
+  }
+}
+
+/* Mobile & Tablets: Full vertical art (ricardo_2.png) + action card below */
+@media (max-width: 960px) {
+  /* Disable desktop split background to avoid overlapping */
+  .bg-scene {
+    display: none;
+  }
+
+  body {
+    background-color: #001f5c;
+    background-image: radial-gradient(circle at 50% 0%, #002878 0%, #00194a 100%);
+    background-attachment: fixed;
+  }
+
+  .layout-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 16px 40px 16px;
+    min-height: 100vh;
+  }
+
+  /* Official vertical banner on mobile */
+  .mobile-hero-banner {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px -8px rgba(0, 10, 30, 0.45);
+  }
+
+  .mobile-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Content Column overlaps smoothly below banner */
+  .content-column {
+    max-width: 440px;
+    margin: -24px auto 0 auto;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Hide duplicate logo in card on mobile since banner above already shows it prominently */
+  .card-top .logo-wrapper {
+    display: none;
+  }
+
+  .card-top {
+    margin-bottom: 14px;
+  }
+
+  .action-card {
+    padding: 24px 20px 20px 20px;
+    border-radius: 22px;
+    box-shadow: 0 20px 45px -10px rgba(0, 10, 30, 0.35);
+  }
+
+  .main-title {
+    font-size: 1.35rem;
+  }
+
+  .main-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .layout-container {
+    padding: 16px 12px 32px 12px;
+  }
+
+  .mobile-hero-banner {
+    border-radius: 18px;
+  }
+
+  .content-column {
+    margin-top: -18px;
+  }
+
+  .action-card {
+    padding: 22px 16px 18px 16px;
+    border-radius: 18px;
+  }
+
+  .main-title {
+    font-size: 1.25rem;
+  }
+
+  .main-description {
+    font-size: 0.85rem;
+  }
+
+  .btn-whatsapp-action {
+    font-size: 1rem;
+    padding: 14px 16px;
+  }
+
+  .trust-bullets {
+    font-size: 0.72rem;
+  }
+
+  .benefits-container {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .benefit-item {
+    font-size: 0.82rem;
+  }
+}
